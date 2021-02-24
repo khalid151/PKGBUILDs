@@ -1,0 +1,29 @@
+# Maintainer: Khalid Jamal <khalid.y96@outlook.com>
+pkgname=wackeys
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="Monitor Wacom tablet events and expose them on a socket"
+arch=('x86_64')
+url="https://github.com/khalid151/WacKeys"
+license=('MIT')
+depends=('libinput')
+makedepends=('make')
+provides=('wackeys')
+install="$pkgname.install"
+source=("${url}/archive/v${pkgver}.tar.gz")
+md5sums=('a46577cfe88c1be74abd0973d15de0ce')
+
+build() {
+    cd $srcdir/$pkgname-$pkgver
+    make
+}
+
+package() {
+    cd $srcdir/$pkgname-$pkgver
+    install -D -m 755 $pkgname $pkgdir/usr/bin/$pkgname
+    install -D -m 644 $pkgname.1 $pkgdir/usr/share/man/man1/$pkgname.1
+    install -D -m 644 $pkgname.service $pkgdir/usr/lib/systemd/system/$pkgname.service
+    install -D -m 644 LICENSE.md $pkgdir/usr/share/license/$pkgname/LICENSE
+    install -D -m 644 README.md $pkgdir/usr/share/doc/$pkgname/README.md
+    install -m 644 -D -t $pkgdir/usr/share/doc/$pkgname/example/ example/actions.py example/README.md
+}
