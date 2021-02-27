@@ -1,6 +1,6 @@
 # Maintainer: Khalid Jamal <khalid.y96@outlook.com>
 pkgname=wackeys
-pkgver=1.1.1
+pkgver=1.2.1
 pkgrel=1
 pkgdesc="Monitor Wacom tablet events and expose them on a socket"
 arch=('x86_64')
@@ -11,7 +11,7 @@ makedepends=('make')
 provides=('wackeys')
 install="$pkgname.install"
 source=("${url}/archive/v${pkgver}.tar.gz")
-md5sums=('a46577cfe88c1be74abd0973d15de0ce')
+md5sums=('5e761b0e38767bd934b8fdb7d220b73b')
 
 build() {
     cd $srcdir/$pkgname-$pkgver
